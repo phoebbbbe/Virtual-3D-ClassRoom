@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47aeca434a11f4d27bfa7afe4e7783ab
+guid: 1aadfb1db55cc4bfe840b8d2751360c8
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -26,7 +26,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
+    importConstraints: 1
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -981,7 +981,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: ebd8d584c87f844489767c7cace6d6e6, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 1698b9f44bb95443a8d35a9e4740eee7, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
