@@ -10,7 +10,6 @@ public class RoleSceneScript : MonoBehaviour
     public RectTransform[] roles;
     public Vector2[] targetPos;
 
-    int current = 0;
     bool locked = false;
 
     void Start()
@@ -30,12 +29,12 @@ public class RoleSceneScript : MonoBehaviour
         if (locked)
             return;
 
-        targetPos[current].x = 2340f;
-        current ++;
-        if (current >= roles.Length)
-            current = 0;
-        roles[current].anchoredPosition = new Vector2(-2340f, 0);
-        targetPos[current].x = 0;
+        targetPos[RoleScript.roleNo].x = 2340f;
+        RoleScript.roleNo ++;
+        if (RoleScript.roleNo >= roles.Length)
+            RoleScript.roleNo = 0;
+        roles[RoleScript.roleNo].anchoredPosition = new Vector2(-2340f, 0);
+        targetPos[RoleScript.roleNo].x = 0;
         StartCoroutine("Lock");
     }
 
@@ -44,12 +43,12 @@ public class RoleSceneScript : MonoBehaviour
         if (locked)
             return;
 
-        targetPos[current].x = -2340f;
-        current--;
-        if (current < 0)
-            current = roles.Length - 1;
-        roles[current].anchoredPosition = new Vector2(2340f, 0);
-        targetPos[current].x = 0;
+        targetPos[RoleScript.roleNo].x = -2340f;
+        RoleScript.roleNo--;
+        if (RoleScript.roleNo < 0)
+            RoleScript.roleNo = roles.Length - 1;
+        roles[RoleScript.roleNo].anchoredPosition = new Vector2(2340f, 0);
+        targetPos[RoleScript.roleNo].x = 0;
         StartCoroutine("Lock");
     }
 

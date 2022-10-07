@@ -42,7 +42,7 @@ public class RoomSceneScript : MonoBehaviourPunCallbacks
         StringBuilder sb = new StringBuilder();
         foreach(var kvp in PhotonNetwork.CurrentRoom.Players)
         {
-            sb.AppendLine(">> " + kvp.Value.NickName);
+            sb.AppendLine($"{kvp.Value.NickName} into class room");
         }
         textPlayerList.text = sb.ToString();
     }

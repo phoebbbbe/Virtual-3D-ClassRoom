@@ -36,13 +36,27 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
 
     public void InitClassRoom()
     {
+        
         // 隨機生成角色的位置
         float spawnPointX = Random.Range(-3, 3);
         float spawnPointY = 0;
         float spawnPointZ = 0;
+        string roleName = "";
 
+        switch (RoleScript.roleNo)
+        {
+            case 0:
+                roleName = "Aj";
+                break;
+            case 1:
+                roleName = "Aj";
+                break;
+            default:
+                roleName = "Aj";
+                break;
+        }
         // 生成角色物件
-        PhotonNetwork.Instantiate("Aj", new Vector3(spawnPointX, spawnPointY, spawnPointZ), Quaternion.identity);
+        PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), Quaternion.identity);
 
     }
 
@@ -66,16 +80,17 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
     [PunRPC]
     void RpcSendMessage(string message, PhotonMessageInfo info)
     {
-        if(messageList.Count >= 22)
+        if(messageList.Count >= 20)
         {
             messageList.RemoveAt(0);
         }
+        message = $"{_pv.Owner.NickName}:{message}";
         messageList.Add(message);
         UpdateMessage();
     }
 
     void UpdateMessage()
     {
-        messageText.text = string.Join("\n",messageList);
+        messageText.text = string.Join("\n", messageList);
     }
 }

@@ -77,7 +77,6 @@ public class PlayerController : MonoBehaviour
 
         if (!isClapping && clapPressed) // Clapping
         {
-            //_transform.position += Vector3.right * speed * Time.deltaTime;
             animator.SetBool(isClappingHash, true);
         }
         if (isClapping && !clapPressed)
