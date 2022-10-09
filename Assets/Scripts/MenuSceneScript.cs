@@ -11,8 +11,13 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     InputField inputRoomName;
+
+    [SerializeField]
+    InputField inputSeatNumber;
+
     [SerializeField]
     InputField inputPlayerName;
+
     [SerializeField]
     Text textRoomList;
 
@@ -65,6 +70,7 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.CreateRoom(roomName);
             PhotonNetwork.LocalPlayer.NickName = playerName;
+            RoleScript.seatNo = int.Parse(inputSeatNumber.text);
         } else
         {
             print("Invalid RoomName or PlayerName!");
@@ -87,6 +93,7 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.JoinRoom(roomName);
             PhotonNetwork.LocalPlayer.NickName = playerName;
+            RoleScript.seatNo = int.Parse(inputSeatNumber.text);
         } else
         {
             print("Invalid RoomName!");
@@ -106,6 +113,7 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
             }
         }
         textRoomList.text = sb.ToString();
+        print(int.Parse(inputSeatNumber.text));
     }
 
     

@@ -1,81 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 
 
 public class PlayerController : MonoBehaviour
 {
-    //private Transform _transform;
-    private PhotonView _pv;
-    //public float speed;
+    private PhotonView _pv;    
     Animator animator;
-    int isWalkingHash;
-    int isWavingHash;
-    int isSittingHash;
-    int isStandingHash;
-    int isClappingHash;
-    int isAskingHash;
+    int isClappingHash,isAskingHash,isTumbingHash;
+    public TextMesh nametext;
 
     void Start()
     {
-        //_transform = this.transform;
         _pv = this.gameObject.GetComponent<PhotonView>();
         animator = GetComponent<Animator>();
-        isWalkingHash = Animator.StringToHash("isWalking");
-        isWavingHash = Animator.StringToHash("isWaving");
-        isSittingHash = Animator.StringToHash("isSitting");
-        isStandingHash = Animator.StringToHash("isStanding");
         isClappingHash = Animator.StringToHash("isClapping");
         isAskingHash = Animator.StringToHash("isAsking");
-
+        isTumbingHash = Animator.StringToHash("isTumbing");
+        nametext.text = _pv.Owner.NickName;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_pv.IsMine)
         {
-            Control();
+            Clap();
+            Ask();
+            Tumb();
         }
     }
 
-    /* 角色控制 */
-    void Control()
+    void Clap()
     {
-        bool isWalking = animator.GetBool(isWalkingHash);
-        bool forwardPressed = Input.GetKey(KeyCode.RightArrow);
-        bool isWaving = animator.GetBool(isWavingHash);
-        bool wavePressed = Input.GetKey(KeyCode.W);
-        bool isSitting = animator.GetBool(isSittingHash);
-        bool sitPressed = Input.GetKey(KeyCode.DownArrow);
-        bool isStanding = animator.GetBool(isStandingHash);
-        bool standPressed = Input.GetKey(KeyCode.UpArrow);
         bool isClapping = animator.GetBool(isClappingHash);
         bool clapPressed = Input.GetKey(KeyCode.C);
-        bool isAsking = animator.GetBool(isAskingHash);
-        bool askPressed = Input.GetKey(KeyCode.A);
-
-        if (!isWalking && forwardPressed) // Walking Right
-        {
-            //_transform.position += Vector3.right * speed * Time.deltaTime;
-            animator.SetBool(isWalkingHash, true);
-        }
-        if (isWalking && !forwardPressed)
-        {
-            animator.SetBool(isWalkingHash, false);
-        }
-
-        if (!isWaving && wavePressed) // Waving
-        {
-            animator.SetBool(isWavingHash, true);
-        }
-        if (isWaving && !wavePressed)
-        {
-            animator.SetBool(isWavingHash, false);
-        }
-
-        if (!isClapping && clapPressed) // Clapping
+        if (!isClapping && clapPressed)
         {
             animator.SetBool(isClappingHash, true);
         }
@@ -83,8 +44,13 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool(isClappingHash, false);
         }
+    }
 
-        if (!isAsking && askPressed) // Asking
+    void Ask()
+    {
+        bool isAsking = animator.GetBool(isAskingHash);
+        bool askPressed = Input.GetKey(KeyCode.A);
+        if (!isAsking && askPressed)
         {
             animator.SetBool(isAskingHash, true);
         }
@@ -92,28 +58,19 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool(isAskingHash, false);
         }
+    }
 
-        if (!isSitting && sitPressed) // Sitting
+    void Tumb()
+    {
+        bool isTumbing = animator.GetBool(isTumbingHash);
+        bool tumbPressed = Input.GetKey(KeyCode.T);
+        if (!isTumbing && tumbPressed)
         {
-            animator.SetBool(isSittingHash, true);
-            animator.SetBool(isStandingHash, false);
-
+            animator.SetBool(isTumbingHash, true);
         }
-
-        if (!isStanding && standPressed) // Standing
+        if (isTumbing && !tumbPressed)
         {
-            animator.SetBool(isStandingHash, true);
-            animator.SetBool(isSittingHash, false);
-
-        }
-
-
-        if (Input.GetKey(KeyCode.LeftArrow)) // Walking Left
-        {
-            //_transform.position += Vector3.left * speed * Time.deltaTime;
-        }
-        if(!Input.GetKey(KeyCode.LeftArrow))
-        {
+            animator.SetBool(isTumbingHash, false);
         }
     }
 }

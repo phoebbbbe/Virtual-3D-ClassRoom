@@ -36,28 +36,54 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
 
     public void InitClassRoom()
     {
-        
         // 隨機生成角色的位置
-        float spawnPointX = Random.Range(-3, 3);
-        float spawnPointY = 0;
-        float spawnPointZ = 0;
+        Vector3[] spawnPos = new Vector3[] {
+            new Vector3(-0.01f,0.135f, 4.02f),
+            new Vector3(-2.9f, 0.135f, -3.8f),
+            new Vector3(-2.9f, 0.135f,-2.06f),
+            new Vector3(-2.9f, 0.135f, -0.69f),
+            new Vector3(-2.9f, 0.135f, 0.67f),
+            new Vector3(-2.9f, 0.135f, 2.03f),
+            new Vector3(-1.033f, 0.135f, -3.43f),
+            new Vector3(-1.033f, 0.135f, -2.06f),
+            new Vector3(-1.033f, 0.135f, -0.69f),
+            new Vector3(-1.033f, 0.135f, 0.67f),
+            new Vector3(-1.033f, 0.135f, 2.03f),
+            new Vector3(0.82f, 0.135f, -3.43f),
+            new Vector3(0.82f, 0.135f, -2.06f),
+            new Vector3(0.82f, 0.135f, -0.69f),
+            new Vector3(0.82f, 0.1351f, 0.67f),
+            new Vector3(0.82f, 0.135f, 2.03f),
+            new Vector3(2.7f, 0.135f, -3.4f),
+            new Vector3(2.7f, 0.135f, -2.06f),
+            new Vector3(2.7f, 0.135f, -0.69f),
+            new Vector3(2.7f, 0.135f, 0.67f),
+            new Vector3(2.7f, 0.135f, 2.03f)
+    };
+
+        float spawnPointX = spawnPos[RoleScript.seatNo].x;
+        float spawnPointY = spawnPos[RoleScript.seatNo].y;
+        float spawnPointZ = spawnPos[RoleScript.seatNo].z;
         string roleName = "";
 
-        switch (RoleScript.roleNo)
+        if (RoleScript.roleNo == 0)
         {
-            case 0:
-                roleName = "Aj";
-                break;
-            case 1:
-                roleName = "Aj";
-                break;
-            default:
-                roleName = "Aj";
-                break;
-        }
-        // 生成角色物件
-        PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), Quaternion.identity);
+            roleName = "Aj";
+            // 生成角色物件
+            PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), Quaternion.identity);
+        } else if (RoleScript.roleNo == 1)
+        {
+            roleName = "Ch46_nonPBR";
+            // 生成角色物件
+            PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), Quaternion.identity);
 
+        }
+        else if (RoleScript.roleNo == 2)
+        {
+            roleName = "Ch23_nonPBR";
+            // 生成角色物件
+            PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), new Quaternion(0f,180f,0f,0f));
+        }
     }
 
     public string GetMessage()
@@ -84,7 +110,7 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
         {
             messageList.RemoveAt(0);
         }
-        message = $"{_pv.Owner.NickName}:{message}";
+        message = $"{info.Sender.NickName}:{message}";
         messageList.Add(message);
         UpdateMessage();
     }
