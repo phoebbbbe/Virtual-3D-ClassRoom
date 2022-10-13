@@ -12,16 +12,11 @@ public class RoleSceneScript : MonoBehaviour
 
     bool locked = false;
 
-    void Start()
-    {
-    }
-
     void Update()
     {
         left.onClick.AddListener(Previous);
         right.onClick.AddListener(Next);
         Refresh();
-
     }
 
     void Next()

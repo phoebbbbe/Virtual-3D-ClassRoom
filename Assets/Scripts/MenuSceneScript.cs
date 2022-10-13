@@ -23,7 +23,6 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        // 要從StartScene近來才會Connected
         if(PhotonNetwork.IsConnected == false)
         {
             SceneManager.LoadScene("StartScene");

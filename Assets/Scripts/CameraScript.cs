@@ -29,5 +29,10 @@ public class CameraScript : MonoBehaviour
             Camera.main.transform.position = new Vector3(7.39f, 8.77f, -4.3f);
             Camera.main.transform.rotation = Quaternion.Euler(177.163f, -90f, 180f);
         }
+        if (Input.GetKeyDown("4"))
+        {
+            Camera.main.transform.position = new Vector3(-2.9f, 1.5f, -2f);
+            Camera.main.transform.rotation = Quaternion.Euler(15f, 180f, 0f);
+        }
     }
 }
