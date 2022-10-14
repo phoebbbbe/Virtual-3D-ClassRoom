@@ -32,6 +32,7 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
             // 初始化
             InitClassRoom();
         }
+
     }
 
     public void InitClassRoom()
@@ -76,13 +77,14 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
             roleName = "Ch46_nonPBR";
             // 生成角色物件
             PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), Quaternion.identity);
-
         }
         else if (RoleScript.roleNo == 2)
         {
             roleName = "Ch23_nonPBR";
             // 生成角色物件
-            PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), new Quaternion(0f,180f,0f,0f));
+            PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), new Quaternion(0f, 180f, 0f, 0f));
+            PhotonNetwork.Instantiate("PPT", new Vector3(-2.25f, 1.64f, 4.94f), new Quaternion(0f, 180f, 0f, 0f));
+
         }
     }
 
