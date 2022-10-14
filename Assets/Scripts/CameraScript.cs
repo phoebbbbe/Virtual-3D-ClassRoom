@@ -1,38 +1,92 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private readonly PhotonView _pv;
+    /*
+     * 學生鏡頭位置
+     */
+    private readonly Vector3[] _spawnPos = new Vector3[] {
+            new Vector3(-0.01f,2.0f, 1.6f),
+            new Vector3(-2.9f, 2.0f, -5.42f),
+            new Vector3(-2.9f, 2.0f,-3.68f),
+            new Vector3(-2.9f, 2.0f, -2.31f),
+            new Vector3(-2.9f, 2.0f, -0.95f),
+            new Vector3(-2.9f, 2.0f, 0.41f),
+            new Vector3(-1.033f, 2.0f, -5.42f),
+            new Vector3(-1.033f, 2.0f, -3.68f),
+            new Vector3(-1.033f, 2.0f, -2.31f),
+            new Vector3(-1.033f, 2.0f, -0.95f),
+            new Vector3(-1.033f, 2.0f, 0.41f),
+            new Vector3(0.82f, 2.0f, -5.42f),
+            new Vector3(0.82f, 2.0f, -3.68f),
+            new Vector3(0.82f, 2.0f, -2.31f),
+            new Vector3(0.82f, 0.1351f, -0.95f),
+            new Vector3(0.82f, 2.0f, 0.41f),
+            new Vector3(2.7f, 2.0f, -5.42f),
+            new Vector3(2.7f, 2.0f, -3.68f),
+            new Vector3(2.7f, 2.0f, -2.31f),
+            new Vector3(2.7f, 2.0f, -0.95f),
+            new Vector3(2.7f, 2.0f, 0.41f)
+        };
+
     void Start()
     {
-        
+        /*
+         * 初始為學生後面視角
+         */
+        if (RoleScript.seatNo != 0)
+        {
+            Camera.main.transform.SetPositionAndRotation(_spawnPos[RoleScript.seatNo], Quaternion.Euler(4.7f, 0, 0f));
+        }
+        else
+        {
+            Camera.main.transform.SetPositionAndRotation(_spawnPos[RoleScript.seatNo], Quaternion.Euler(4.7f, 180, 0f));
+        }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown("1"))
+        /*
+         * 教室前面視角
+         */
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Camera.main.transform.position = new Vector3(0f, 2.6f, -4.2f);
-            Camera.main.transform.rotation = Quaternion.Euler(177.163f, 180f, 180f);
+            Camera.main.transform.SetPositionAndRotation(new Vector3(0f, 2.6f, -4.2f), Quaternion.Euler(177.163f, 180f, 180f));
+        }
+        /*
+         * 教室後面視角
+         */
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Camera.main.transform.SetPositionAndRotation(new Vector3(0f, 1.9f, 5.2f), Quaternion.Euler(15f, 180f, 0f));
         }
 
-        if (Input.GetKeyDown("2"))
+        /*
+         * 學生後面視角
+         */
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Camera.main.transform.position = new Vector3(0f, 1.9f, 5.2f);
-            Camera.main.transform.rotation = Quaternion.Euler(15f, 180f, 0f);
+            if(RoleScript.seatNo != 0)
+            {
+                Camera.main.transform.SetPositionAndRotation(_spawnPos[RoleScript.seatNo], Quaternion.Euler(4.7f, 0, 0f));
+            }
+            else
+            {
+                Camera.main.transform.SetPositionAndRotation(_spawnPos[RoleScript.seatNo], Quaternion.Euler(4.7f, 180, 0f));
+            }
         }
 
-        if (Input.GetKeyDown("3"))
+        /*
+         * 簡報視角
+         */
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Camera.main.transform.position = new Vector3(7.39f, 8.77f, -4.3f);
-            Camera.main.transform.rotation = Quaternion.Euler(177.163f, -90f, 180f);
-        }
-        if (Input.GetKeyDown("4"))
-        {
-            Camera.main.transform.position = new Vector3(-2.9f, 1.5f, -2f);
-            Camera.main.transform.rotation = Quaternion.Euler(15f, 180f, 0f);
+            Camera.main.transform.SetPositionAndRotation(new Vector3(-2.24f, 1.63f, 3.46f), Quaternion.Euler(0f, 0f, 0f));
         }
     }
 }

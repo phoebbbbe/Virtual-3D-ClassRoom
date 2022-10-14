@@ -7,10 +7,10 @@ using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
-    private PhotonView _pv;    
-    Animator animator;
-    int isClappingHash,isAskingHash,isTumbingHash;
     public TextMesh nametext;
+    private PhotonView _pv;
+    private Animator animator;
+    int isClappingHash,isAskingHash,isTumbingHash;
 
     void Start()
     {

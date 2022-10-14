@@ -29,7 +29,6 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
             SceneManager.LoadScene("MenuScene");
         } else
         {
-            // 初始化
             InitClassRoom();
         }
 
@@ -37,7 +36,9 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
 
     public void InitClassRoom()
     {
-        // 隨機生成角色的位置
+        /*
+         * 角色的位置
+         */
         Vector3[] spawnPos = new Vector3[] {
             new Vector3(-0.01f,0.135f, 4.02f),
             new Vector3(-2.9f, 0.135f, -3.8f),
@@ -60,38 +61,33 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
             new Vector3(2.7f, 0.135f, -0.69f),
             new Vector3(2.7f, 0.135f, 0.67f),
             new Vector3(2.7f, 0.135f, 2.03f)
-    };
+        };
 
         float spawnPointX = spawnPos[RoleScript.seatNo].x;
         float spawnPointY = spawnPos[RoleScript.seatNo].y;
         float spawnPointZ = spawnPos[RoleScript.seatNo].z;
         string roleName = "";
 
+        /**
+         * 生成角色物件
+         */
         if (RoleScript.roleNo == 0)
         {
             roleName = "Aj";
-            // 生成角色物件
             PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), Quaternion.identity);
+
         } else if (RoleScript.roleNo == 1)
         {
             roleName = "Ch46_nonPBR";
-            // 生成角色物件
             PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), Quaternion.identity);
         }
         else if (RoleScript.roleNo == 2)
         {
             roleName = "Ch23_nonPBR";
-            // 生成角色物件
             PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), new Quaternion(0f, 180f, 0f, 0f));
             PhotonNetwork.Instantiate("PPT", new Vector3(-2.25f, 1.64f, 4.94f), new Quaternion(0f, 180f, 0f, 0f));
 
         }
-    }
-
-    public string GetMessage()
-    {
-        string message = inputMessage.text;
-        return message.Trim(); // Trim可以過濾掉空白字元
     }
 
     public void OnClickSendMessage()
@@ -100,11 +96,15 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
         CallRpcSendMessageToAll(message);
     }
 
-    public void CallRpcSendMessageToAll(string message)
+    public string GetMessage()
     {
-        _pv.RPC("RpcSendMessage", RpcTarget.All, message);
+        string message = inputMessage.text;
+        return message.Trim();
     }
 
+    /*
+     * 聊天視窗
+     */
     [PunRPC]
     void RpcSendMessage(string message, PhotonMessageInfo info)
     {
@@ -121,4 +121,10 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
     {
         messageText.text = string.Join("\n", messageList);
     }
+
+    public void CallRpcSendMessageToAll(string message)
+    {
+        _pv.RPC("RpcSendMessage", RpcTarget.All, message);
+    }
+
 }
