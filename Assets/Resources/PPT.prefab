@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9080118371004528142
 RectTransform:
   m_ObjectHideFlags: 0
@@ -380,7 +380,8 @@ GameObject:
   - component: {fileID: 8753761827139339970}
   - component: {fileID: 8753761827139339969}
   - component: {fileID: 8753761827139339972}
-  - component: {fileID: 811860641096850820}
+  - component: {fileID: -6169534100863427468}
+  - component: {fileID: 4613275340316861890}
   m_Layer: 0
   m_Name: PPT
   m_TagString: Untagged
@@ -480,8 +481,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 98c30f848d2084052aeb9ea33ea003bd, type: 2}
   - {fileID: 2100000, guid: 6ddce2caeba204fe29f4ea2c7cb5af7c, type: 2}
   - {fileID: 2100000, guid: 17929e0654d5146a4950377edcdb8554, type: 2}
-  x: 0
---- !u!114 &811860641096850820
+--- !u!114 &-6169534100863427468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -496,10 +496,27 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 2
+  Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 4613275340316861890}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &4613275340316861890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753761827139339983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1

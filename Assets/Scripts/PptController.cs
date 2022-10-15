@@ -4,53 +4,65 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
+using HashTable = ExitGames.Client.Photon.Hashtable;
 
-public class PptController : MonoBehaviour
+
+public class PptController : MonoBehaviourPunCallbacks
 {
+    private PhotonView _pv;
     public Material[] materials;
-    public int x;
+    int pptCount;
     Renderer rend;
 
-    //public GameObject buttonNextPpt;
-    //public GameObject buttonLastPpt;
-
+    /*
+     * 初始化PPT
+     */
     void Start()
     {
-        x = 0;
-        rend = GetComponent<Renderer>();
+        _pv = this.gameObject.GetComponent<PhotonView>();
+        pptCount = 0;
+        rend = this.gameObject.GetComponent<Renderer>();
         rend.enabled = true;
-        rend.sharedMaterial = materials[x];
-
-        //buttonNextPpt.SetActive(PhotonNetwork.IsMasterClient);
-        //buttonLastPpt.SetActive(PhotonNetwork.IsMasterClient);
+        rend.sharedMaterial = materials[pptCount];
     }
 
-    void Update()
+    public void OnChanged(int x)
     {
         rend.sharedMaterial = materials[x];
     }
 
-    public void NextPpt()
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, HashTable changedProps)
     {
-        if (x < 13)
+        if (targetPlayer == _pv.Owner)
         {
-            x++;
-        }
-        else
-        {
-            x = 0;
+            pptCount = (int)changedProps["pptCount"];
+            OnChanged(pptCount);
         }
     }
 
-    public void LastPpt()
-    {
-        if (x >= 0)
-        {
-            x--;
-        }
-        else
-        {
-            x = 0;
-        }
-    }
+    //public void NextPpt()
+    //{
+    //    if (x < 13)
+    //    {
+    //        x++;
+    //    }
+    //    else
+    //    {
+    //        x = 0;
+    //    }
+    //}
+
+    //public void LastPpt()
+    //{
+    //    if (x >= 0)
+    //    {
+    //        x--;
+    //    }
+    //    else
+    //    {
+    //        x = 0;
+    //    }
+    //}
 }
