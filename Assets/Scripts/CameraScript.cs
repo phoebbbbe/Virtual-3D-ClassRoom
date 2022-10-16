@@ -51,42 +51,44 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
+    }
+
+    public void OnClickHeadCamera()
+    {
         /*
-         * 教室前面視角
+         *教室前面視角
          */
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Camera.main.transform.SetPositionAndRotation(new Vector3(0f, 2.3f, 4.96f), Quaternion.Euler(17.342f, 180f, 0f));
-        }
+        Camera.main.transform.SetPositionAndRotation(new Vector3(0f, 2.3f, 4.96f), Quaternion.Euler(17.342f, 180f, 0f));
+    }
+
+    public void OnClickBackCamera()
+    {
         /*
          * 教室後面視角
          */
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Camera.main.transform.SetPositionAndRotation(new Vector3(0f, 3.14f, -5.34f), Quaternion.Euler(30.68f, 0f, 0f));
-        }
+        Camera.main.transform.SetPositionAndRotation(new Vector3(0f, 3.14f, -5.34f), Quaternion.Euler(30.68f, 0f, 0f));
+    }
 
+    public void OnClickPersonCamera()
+    {
         /*
          * 學生/老師後面視角
          */
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (RoleScript.seatNo != 0)
         {
-            if(RoleScript.seatNo != 0)
-            {
-                Camera.main.transform.SetPositionAndRotation(_spawnPos[RoleScript.seatNo], Quaternion.Euler(4.7f, 0, 0f));
-            }
-            else
-            {
-                Camera.main.transform.SetPositionAndRotation(_spawnPos[RoleScript.seatNo], Quaternion.Euler(4.7f, 180, 0f));
-            }
+            Camera.main.transform.SetPositionAndRotation(_spawnPos[RoleScript.seatNo], Quaternion.Euler(4.7f, 0, 0f));
         }
+        else
+        {
+            Camera.main.transform.SetPositionAndRotation(_spawnPos[RoleScript.seatNo], Quaternion.Euler(4.7f, 180, 0f));
+        }
+    }
 
+    public void OnClickPptCamera()
+    {
         /*
          * 簡報視角
          */
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Camera.main.transform.SetPositionAndRotation(new Vector3(-2.24f, 1.63f, 3.46f), Quaternion.Euler(0f, 0f, 0f));
-        }
+        Camera.main.transform.SetPositionAndRotation(new Vector3(-2.24f, 1.63f, 3.46f), Quaternion.Euler(0f, 0f, 0f));
     }
 }
