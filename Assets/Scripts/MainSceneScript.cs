@@ -9,6 +9,7 @@ using Photon.Pun;
 
 public class MainSceneScript : MonoBehaviourPunCallbacks
 {
+
     [SerializeField]
     List<string> messageList;
 
@@ -39,7 +40,6 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
         {
             InitClassRoom();
         }
-
     }
 
     public void InitClassRoom()

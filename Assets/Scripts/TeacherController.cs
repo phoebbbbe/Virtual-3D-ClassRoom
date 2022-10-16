@@ -15,6 +15,8 @@ public class TeacherController : MonoBehaviourPunCallbacks
     private Animator animator;
     public GameObject textStudentCountObj;
     public GameObject titleStudentCountObj;
+    public GameObject buttonGesture;
+    public GameObject buttonWave;
     int isGesturingHash;
     int isWavingHash;
     int pptCount;
@@ -31,10 +33,11 @@ public class TeacherController : MonoBehaviourPunCallbacks
     void Start()
     {
         _pv = this.gameObject.GetComponent<PhotonView>();
-        animator = GetComponent<Animator>();
+        nametext.text = _pv.Owner.NickName;
+
+        animator = this.gameObject.GetComponent<Animator>();
         isGesturingHash = Animator.StringToHash("isGesturing");
         isWavingHash = Animator.StringToHash("isWaving");
-        nametext.text = _pv.Owner.NickName;
         pptCount = 0;
 
         if (PhotonNetwork.CurrentRoom.PlayerCount <= 1)
@@ -46,18 +49,12 @@ public class TeacherController : MonoBehaviourPunCallbacks
             textStudentCount.text = (PhotonNetwork.CurrentRoom.PlayerCount - 1).ToString();
         }
         
-        buttonNextPpt.SetActive(PhotonNetwork.IsMasterClient);
-        buttonLastPpt.SetActive(PhotonNetwork.IsMasterClient);
-        textStudentCountObj.SetActive(PhotonNetwork.IsMasterClient);
-        titleStudentCountObj.SetActive(PhotonNetwork.IsMasterClient);
-    }
-
-    public override void OnMasterClientSwitched(Player newMasterClient)
-    {
-        textStudentCountObj.SetActive(PhotonNetwork.IsMasterClient);
-        titleStudentCountObj.SetActive(PhotonNetwork.IsMasterClient);
-        buttonNextPpt.SetActive(PhotonNetwork.IsMasterClient);
-        buttonLastPpt.SetActive(PhotonNetwork.IsMasterClient);
+        buttonNextPpt.SetActive(_pv.IsMine);
+        buttonLastPpt.SetActive(_pv.IsMine);
+        textStudentCountObj.SetActive(_pv.IsMine);
+        titleStudentCountObj.SetActive(_pv.IsMine);
+        buttonGesture.SetActive(_pv.IsMine);
+        buttonWave.SetActive(_pv.IsMine);
     }
 
     public void UpdatePlayerList()
@@ -84,41 +81,49 @@ public class TeacherController : MonoBehaviourPunCallbacks
 
     void Update()
     {
+        buttonNextPpt.SetActive(_pv.IsMine);
+        buttonLastPpt.SetActive(_pv.IsMine);
+        textStudentCountObj.SetActive(_pv.IsMine);
+        titleStudentCountObj.SetActive(_pv.IsMine);
+        buttonGesture.SetActive(_pv.IsMine);
+        buttonWave.SetActive(_pv.IsMine);
         if (_pv.IsMine)
         {
-            Gesture();
-            Wave();
+            InitAnimation();
         }
     }
 
-    void Gesture()
+    public void Gesture()
     {
-        bool isGesturing = animator.GetBool(isGesturingHash);
-        bool gesturePressed = Input.GetKey(KeyCode.G);
-        if (!isGesturing && gesturePressed)
+        if (_pv.IsMine)
         {
             animator.SetBool(isGesturingHash, true);
+
         }
-        if (isGesturing && !gesturePressed)
+    }
+
+    public void Wave()
+    {
+        if (_pv.IsMine)
+        {
+            animator.SetBool(isWavingHash, true);
+
+        }
+    }
+
+
+    public void InitAnimation()
+    {
+        if (animator.GetBool(isGesturingHash) == true && animator.GetCurrentAnimatorStateInfo(0).IsName("Arm Gesture") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         {
             animator.SetBool(isGesturingHash, false);
         }
-    }
 
-    void Wave()
-    {
-        bool isWaving = animator.GetBool(isWavingHash);
-        bool wavePressed = Input.GetKey(KeyCode.W);
-        if (!isWaving && wavePressed)
-        {
-            animator.SetBool(isWavingHash, true);
-        }
-        if (isWaving && !wavePressed)
+        if (animator.GetBool(isWavingHash) == true && animator.GetCurrentAnimatorStateInfo(0).IsName("Waving") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         {
             animator.SetBool(isWavingHash, false);
         }
     }
-
     public void NextPpt()
     {
         if (_pv.IsMine)
@@ -155,8 +160,4 @@ public class TeacherController : MonoBehaviourPunCallbacks
         }
     }
 
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, HashTable changedProps)
-    {
-        
-    }
 }
