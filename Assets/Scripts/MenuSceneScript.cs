@@ -40,7 +40,10 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
         print("Connected to Master.");
         PhotonNetwork.JoinLobby();
     }
-    // 進入Lobby後回傳"Joined Lobby.
+
+    /*
+     * 進入Lobby後
+     */
     public override void OnJoinedLobby()
     {
         print("Joined Lobby.");
@@ -50,7 +53,7 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
     public string GetRoomName()
     {
         string roomName = inputRoomName.text;
-        return roomName.Trim(); // Trim可以過濾掉空白字元
+        return roomName.Trim();
     }
 
     public string GetPlayerName()
@@ -59,7 +62,9 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
         return playerName.Trim();
     }
 
-    // 創建一個Room
+    /*
+     * 創建教室
+     */
     public void OnClickCreateRoom()
     {
         string roomName = GetRoomName();
@@ -69,7 +74,14 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.CreateRoom(roomName);
             PhotonNetwork.LocalPlayer.NickName = playerName;
-            RoleScript.seatNo = int.Parse(inputSeatNumber.text);
+            if (RoleScript.identityNo == 0)
+            {
+                RoleScript.seatNo = 0;
+            }
+            else
+            {
+                RoleScript.seatNo = int.Parse(inputSeatNumber.text);
+            }
         } else
         {
             print("Invalid RoomName or PlayerName!");
@@ -77,13 +89,15 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
 
     }
 
-    // 確認房間是否創建成功
     public override void OnJoinedRoom()
     {
         print("Room Joined!");
         SceneManager.LoadScene("RoomScene");
     }
 
+    /*
+     * 進入教室
+     */
     public void OnClickEnterRoom()
     {
         string roomName = GetRoomName();
@@ -99,8 +113,9 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
         }
     }
 
-
-    // 顯示遊戲列表(每次遊戲列表有更新時，觸發此函式，則會收到roomList房間資訊)
+    /*
+     * 顯示遊戲列表(每次遊戲列表有更新時，觸發此函式，則會收到roomList房間資訊)
+     */
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         StringBuilder sb = new StringBuilder();
@@ -114,6 +129,5 @@ public class MenuSceneScript : MonoBehaviourPunCallbacks
         textRoomList.text = sb.ToString();
         print(int.Parse(inputSeatNumber.text));
     }
-
     
 }

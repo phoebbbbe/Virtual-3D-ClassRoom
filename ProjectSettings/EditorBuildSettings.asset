@@ -9,15 +9,27 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: 3f9a99b7bc4174768bcb475fda3e7360
   - enabled: 1
-    path: Assets/Scenes/RoleScene.unity
-    guid: cf3618c65085143fe979160de3784c2e
+    path: Assets/Scenes/IdentityScene.unity
+    guid: 1bb1a7d4969394cff96a04dc9c732c95
   - enabled: 1
-    path: Assets/Scenes/MenuScene.unity
+    path: Assets/Scenes/StudentRoleScene.unity
+    guid: 7cea4a5054b41489a8319532b91bb1df
+  - enabled: 1
+    path: Assets/Scenes/TeacherRoleScene.unity
+    guid: 955cb8bbc69254717a87aca08262f2f4
+  - enabled: 1
+    path: Assets/Scenes/StudentMenuScene.unity
     guid: 9d738c8e8cbae4431a47e9e53fde1d77
+  - enabled: 1
+    path: Assets/Scenes/TeacherMenuScene.unity
+    guid: f7d176c709a2342b28c67aa77021626a
   - enabled: 1
     path: Assets/Scenes/RoomScene.unity
     guid: 66a3a67071bd048dba87b3680dd143ca
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

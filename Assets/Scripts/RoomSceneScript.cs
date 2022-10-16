@@ -22,7 +22,14 @@ public class RoomSceneScript : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.CurrentRoom == null)
         {
-            SceneManager.LoadScene("MenuScene");
+            if (RoleScript.identityNo == 0)
+            {
+                SceneManager.LoadScene("TeacherMenuScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("StudentMenuScene");
+            }
         } else
         {
             textRoomName.text = PhotonNetwork.CurrentRoom.Name;
@@ -69,7 +76,14 @@ public class RoomSceneScript : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene("MenuScene");
+        if (RoleScript.identityNo == 0)
+        {
+            SceneManager.LoadScene("TeacherMenuScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("StudentMenuScene");
+        }
     }
 
 

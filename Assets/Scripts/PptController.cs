@@ -41,28 +41,4 @@ public class PptController : MonoBehaviourPunCallbacks
             OnChanged(pptCount);
         }
     }
-
-    //public void NextPpt()
-    //{
-    //    if (x < 13)
-    //    {
-    //        x++;
-    //    }
-    //    else
-    //    {
-    //        x = 0;
-    //    }
-    //}
-
-    //public void LastPpt()
-    //{
-    //    if (x >= 0)
-    //    {
-    //        x--;
-    //    }
-    //    else
-    //    {
-    //        x = 0;
-    //    }
-    //}
 }

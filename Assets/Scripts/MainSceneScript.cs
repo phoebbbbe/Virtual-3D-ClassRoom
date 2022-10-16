@@ -26,7 +26,15 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
 
         if(PhotonNetwork.CurrentRoom == null)
         {
-            SceneManager.LoadScene("MenuScene");
+            if (RoleScript.identityNo == 0)
+            {
+                SceneManager.LoadScene("TeacherMenuScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("StudentMenuScene");
+            }
+            
         } else
         {
             InitClassRoom();
@@ -54,7 +62,7 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
             new Vector3(0.82f, 0.135f, -3.77f),
             new Vector3(0.82f, 0.135f, -2.4f),
             new Vector3(0.82f, 0.135f, -1.03f),
-            new Vector3(0.82f, 0.1351f, 0.33f),
+            new Vector3(0.82f, 0.135f, 0.33f),
             new Vector3(0.82f, 0.135f, 1.69f),
             new Vector3(2.7f, 0.135f, -3.77f),
             new Vector3(2.7f, 0.135f, -2.4f),
@@ -71,22 +79,38 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
         /**
          * 生成角色物件
          */
-        if (RoleScript.roleNo == 0)
+        if(RoleScript.identityNo == 0)
         {
-            roleName = "Aj";
-            PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), Quaternion.identity);
-
-        } else if (RoleScript.roleNo == 1)
-        {
-            roleName = "Ch46_nonPBR";
-            PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), Quaternion.identity);
-        }
-        else if (RoleScript.roleNo == 2)
-        {
-            roleName = "Ch23_nonPBR";
+            switch (RoleScript.roleNo)
+            {
+                case 0:
+                    roleName = "Male1";
+                    break;
+                case 1:
+                    roleName = "Male2";
+                    break;
+                case 2:
+                    roleName = "Female";
+                    break;
+            }
             PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), new Quaternion(0f, 180f, 0f, 0f));
             PhotonNetwork.Instantiate("PPT", new Vector3(-2.25f, 1.64f, 4.94f), new Quaternion(0f, 180f, 0f, 0f));
-
+        }
+        else
+        {
+            switch (RoleScript.roleNo)
+            {
+                case 0:
+                    roleName = "Aj";
+                    break;
+                case 1:
+                    roleName = "Amy";
+                    break;
+                case 2:
+                    roleName = "CoolGirl";
+                    break;
+            }
+            PhotonNetwork.Instantiate(roleName, new Vector3(spawnPointX, spawnPointY, spawnPointZ), Quaternion.identity);
         }
     }
 

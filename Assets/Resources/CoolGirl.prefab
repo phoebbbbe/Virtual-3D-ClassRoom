@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 789018839735026646}
   - component: {fileID: 1881709628655182892}
   m_Layer: 0
-  m_Name: Ch03_nonPBR
+  m_Name: CoolGirl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ Transform:
   m_GameObject: {fileID: 446491492864917146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1.02, y: 1.02, z: 1.02}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4213085137297316600}

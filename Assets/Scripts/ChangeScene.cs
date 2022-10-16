@@ -5,18 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    public void LoadRoleScene()
+
+    public void LoadStudentMenuScene()
     {
-        SceneManager.LoadScene("RoleScene");
+        SceneManager.LoadScene("StudentMenuScene");
     }
 
-    public void LoadMainScene()
+    public void LoadTeacherMenuScene()
     {
-        SceneManager.LoadScene("MainScene");
-    }
-
-    public void LoadMenuScene()
-    {
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene("TeacherMenuScene");
     }
 }

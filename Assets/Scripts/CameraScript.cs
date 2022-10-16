@@ -25,7 +25,7 @@ public class CameraScript : MonoBehaviour
             new Vector3(0.82f, 2.0f, -5.42f),
             new Vector3(0.82f, 2.0f, -3.68f),
             new Vector3(0.82f, 2.0f, -2.31f),
-            new Vector3(0.82f, 0.1351f, -0.95f),
+            new Vector3(0.82f, 2.0f, -0.95f),
             new Vector3(0.82f, 2.0f, 0.41f),
             new Vector3(2.7f, 2.0f, -5.42f),
             new Vector3(2.7f, 2.0f, -3.68f),
@@ -56,18 +56,18 @@ public class CameraScript : MonoBehaviour
          */
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Camera.main.transform.SetPositionAndRotation(new Vector3(0f, 2.6f, -4.2f), Quaternion.Euler(177.163f, 180f, 180f));
+            Camera.main.transform.SetPositionAndRotation(new Vector3(0f, 2.3f, 4.96f), Quaternion.Euler(17.342f, 180f, 0f));
         }
         /*
          * 教室後面視角
          */
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Camera.main.transform.SetPositionAndRotation(new Vector3(0f, 1.9f, 5.2f), Quaternion.Euler(15f, 180f, 0f));
+            Camera.main.transform.SetPositionAndRotation(new Vector3(0f, 3.14f, -5.34f), Quaternion.Euler(30.68f, 0f, 0f));
         }
 
         /*
-         * 學生後面視角
+         * 學生/老師後面視角
          */
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {

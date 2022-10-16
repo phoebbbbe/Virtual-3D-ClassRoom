@@ -2416,7 +2416,7 @@ GameObject:
   - component: {fileID: -4236086749094090423}
   - component: {fileID: 5129120507211812624}
   m_Layer: 0
-  m_Name: Ch46_nonPBR
+  m_Name: Amy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
