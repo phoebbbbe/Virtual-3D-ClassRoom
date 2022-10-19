@@ -23,6 +23,7 @@ public class TeacherController : MonoBehaviourPunCallbacks
     int isWavingHash;
     int pptCount;
     int countExplain = 0;
+    float xRange = 500f;
 
     [SerializeField]
     GameObject buttonNextPpt;
@@ -60,7 +61,7 @@ public class TeacherController : MonoBehaviourPunCallbacks
         buttonWave.SetActive(_pv.IsMine);
         buttonExplain.SetActive(_pv.IsMine);
         explainUI.SetActive(_pv.IsMine);
-        explainUI.transform.position = new Vector3(explainUI.transform.position.x - 300f, explainUI.transform.position.y, 0f);
+        explainUI.transform.position = new Vector3(explainUI.transform.position.x - xRange, explainUI.transform.position.y, 0f);
     }
 
     public void UpdatePlayerList()
@@ -172,12 +173,12 @@ public class TeacherController : MonoBehaviourPunCallbacks
         {
             if (countExplain % 2 == 0)
             {
-                explainUI.transform.position = new Vector3(explainUI.transform.position.x + 300f, explainUI.transform.position.y, 0f);
+                explainUI.transform.position = new Vector3(explainUI.transform.position.x + xRange, explainUI.transform.position.y, 0f);
                 countExplain++;
             }
             else
             {
-                explainUI.transform.position = new Vector3(explainUI.transform.position.x - 300f, explainUI.transform.position.y, 0f);
+                explainUI.transform.position = new Vector3(explainUI.transform.position.x - xRange, explainUI.transform.position.y, 0f);
                 countExplain++;
             }
         }

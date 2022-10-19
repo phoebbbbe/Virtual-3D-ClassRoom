@@ -37,6 +37,7 @@ public class StudentController : MonoBehaviourPunCallbacks
     int isVictoringHash;
     int isWavingHash;
     int countExplain = 0;
+    float xRange = 500f;
 
     void Start()
     {
@@ -67,7 +68,7 @@ public class StudentController : MonoBehaviourPunCallbacks
         buttonWave.SetActive(_pv.IsMine);
         buttonExplain.SetActive(_pv.IsMine);
         explainUI.SetActive(_pv.IsMine);
-        explainUI.transform.position = new Vector3(explainUI.transform.position.x - 300f, explainUI.transform.position.y, 0f);
+        explainUI.transform.position = new Vector3(explainUI.transform.position.x - xRange, explainUI.transform.position.y, 0f);
     }
 
     void Update()
@@ -227,12 +228,12 @@ public class StudentController : MonoBehaviourPunCallbacks
         {
             if (countExplain % 2 == 0)
             {
-                explainUI.transform.position = new Vector3(explainUI.transform.position.x + 300f, explainUI.transform.position.y, 0f);
+                explainUI.transform.position = new Vector3(explainUI.transform.position.x + xRange, explainUI.transform.position.y, 0f);
                 countExplain++;
             }
             else
             {
-                explainUI.transform.position = new Vector3(explainUI.transform.position.x - 300f, explainUI.transform.position.y, 0f);
+                explainUI.transform.position = new Vector3(explainUI.transform.position.x - xRange, explainUI.transform.position.y, 0f);
                 countExplain++;
             }
         }

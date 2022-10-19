@@ -21,7 +21,8 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
     InputField inputMessage;
 
     public GameObject chatUI;
-    
+
+    float xRange = 500f;
     int countChat = 0;
     
 
@@ -30,7 +31,7 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
     void Start()
     {
         _pv = this.gameObject.GetComponent<PhotonView>();
-        chatUI.transform.position = new Vector3(chatUI.transform.position.x + 300f, chatUI.transform.position.y, 0f);
+        chatUI.transform.position = new Vector3(chatUI.transform.position.x + xRange, chatUI.transform.position.y, 0f);
 
         if (PhotonNetwork.CurrentRoom == null)
         {
@@ -162,12 +163,12 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
     {
         if (countChat % 2 == 0)
         {
-            chatUI.transform.position = new Vector3(chatUI.transform.position.x - 300f, chatUI.transform.position.y, 0f);
+            chatUI.transform.position = new Vector3(chatUI.transform.position.x - xRange, chatUI.transform.position.y, 0f);
             countChat++;
         }
         else
         {
-            chatUI.transform.position = new Vector3(chatUI.transform.position.x + 300f, chatUI.transform.position.y, 0f);
+            chatUI.transform.position = new Vector3(chatUI.transform.position.x + xRange, chatUI.transform.position.y, 0f);
             countChat++;
         }
         
