@@ -17,9 +17,12 @@ public class TeacherController : MonoBehaviourPunCallbacks
     public GameObject titleStudentCountObj;
     public GameObject buttonGesture;
     public GameObject buttonWave;
+    public GameObject buttonExplain;
+    public GameObject explainUI;
     int isGesturingHash;
     int isWavingHash;
     int pptCount;
+    int countExplain = 0;
 
     [SerializeField]
     GameObject buttonNextPpt;
@@ -55,6 +58,9 @@ public class TeacherController : MonoBehaviourPunCallbacks
         titleStudentCountObj.SetActive(_pv.IsMine);
         buttonGesture.SetActive(_pv.IsMine);
         buttonWave.SetActive(_pv.IsMine);
+        buttonExplain.SetActive(_pv.IsMine);
+        explainUI.SetActive(_pv.IsMine);
+        explainUI.transform.position = new Vector3(explainUI.transform.position.x - 250f, explainUI.transform.position.y, 0f);
     }
 
     public void UpdatePlayerList()
@@ -129,7 +135,7 @@ public class TeacherController : MonoBehaviourPunCallbacks
         if (_pv.IsMine)
         {
             HashTable table = new HashTable();
-            if (pptCount < 13)
+            if (pptCount < 25)
             {
                 pptCount++;
             }
@@ -158,6 +164,24 @@ public class TeacherController : MonoBehaviourPunCallbacks
             table.Add("pptCount", pptCount);
             PhotonNetwork.LocalPlayer.SetCustomProperties(table);
         }
+    }
+
+    public void OnClickExplainButton()
+    {
+        if (_pv.IsMine)
+        {
+            if (countExplain % 2 == 0)
+            {
+                explainUI.transform.position = new Vector3(explainUI.transform.position.x + 250f, explainUI.transform.position.y, 0f);
+                countExplain++;
+            }
+            else
+            {
+                explainUI.transform.position = new Vector3(explainUI.transform.position.x - 250f, explainUI.transform.position.y, 0f);
+                countExplain++;
+            }
+        }
+
     }
 
 }

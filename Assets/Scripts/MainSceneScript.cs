@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
+using Photon.Chat.Demo;
 
 public class MainSceneScript : MonoBehaviourPunCallbacks
 {
@@ -19,13 +20,19 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
     [SerializeField]
     InputField inputMessage;
 
+    public GameObject chatUI;
+    
+    int countChat = 0;
+    
+
     PhotonView _pv;
 
     void Start()
     {
         _pv = this.gameObject.GetComponent<PhotonView>();
+        chatUI.transform.position = new Vector3(chatUI.transform.position.x + 250f, chatUI.transform.position.y, 0f);
 
-        if(PhotonNetwork.CurrentRoom == null)
+        if (PhotonNetwork.CurrentRoom == null)
         {
             if (RoleScript.identityNo == 0)
             {
@@ -149,6 +156,21 @@ public class MainSceneScript : MonoBehaviourPunCallbacks
     public void CallRpcSendMessageToAll(string message)
     {
         _pv.RPC("RpcSendMessage", RpcTarget.All, message);
+    }
+
+    public void OnClickChatButton()
+    {
+        if (countChat % 2 == 0)
+        {
+            chatUI.transform.position = new Vector3(chatUI.transform.position.x - 250f, chatUI.transform.position.y, 0f);
+            countChat++;
+        }
+        else
+        {
+            chatUI.transform.position = new Vector3(chatUI.transform.position.x + 250f, chatUI.transform.position.y, 0f);
+            countChat++;
+        }
+        
     }
 
 }

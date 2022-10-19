@@ -7,6 +7,7 @@ using Photon.Realtime;
 using ExitGames.Client.Photon;
 using HashTable = ExitGames.Client.Photon.Hashtable;
 using System.Text;
+using Photon.Chat.Demo;
 
 public class StudentController : MonoBehaviourPunCallbacks
 {
@@ -23,6 +24,8 @@ public class StudentController : MonoBehaviourPunCallbacks
     public GameObject buttonTumb;
     public GameObject buttonVictory;
     public GameObject buttonWave;
+    public GameObject buttonExplain;
+    public GameObject explainUI;
     int isClappingHash;
     int isAskingHash;
     int isTumbingHash;
@@ -33,6 +36,7 @@ public class StudentController : MonoBehaviourPunCallbacks
     int isStandClappingHash;
     int isVictoringHash;
     int isWavingHash;
+    int countExplain = 0;
 
     void Start()
     {
@@ -61,7 +65,9 @@ public class StudentController : MonoBehaviourPunCallbacks
         buttonTumb.SetActive(_pv.IsMine);
         buttonVictory.SetActive(_pv.IsMine);
         buttonWave.SetActive(_pv.IsMine);
-
+        buttonExplain.SetActive(_pv.IsMine);
+        explainUI.SetActive(_pv.IsMine);
+        explainUI.transform.position = new Vector3(explainUI.transform.position.x - 250f, explainUI.transform.position.y, 0f);
     }
 
     void Update()
@@ -213,6 +219,24 @@ public class StudentController : MonoBehaviourPunCallbacks
         {
             animator.SetBool(isWavingHash, false);
         }
+    }
+
+    public void OnClickExplainButton()
+    {
+        if (_pv.IsMine)
+        {
+            if (countExplain % 2 == 0)
+            {
+                explainUI.transform.position = new Vector3(explainUI.transform.position.x + 250f, explainUI.transform.position.y, 0f);
+                countExplain++;
+            }
+            else
+            {
+                explainUI.transform.position = new Vector3(explainUI.transform.position.x - 250f, explainUI.transform.position.y, 0f);
+                countExplain++;
+            }
+        }
+        
     }
 
 }
