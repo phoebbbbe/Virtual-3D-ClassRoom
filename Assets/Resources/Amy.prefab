@@ -4003,7 +4003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nametext: {fileID: 4832273591044818682}
-  buttonAsk: {fileID: 5956606069173188796}
+  buttonAsk: {fileID: 4797511602090816361}
   buttonBang: {fileID: 5956606069173188796}
   buttonClap: {fileID: 7041113310808182666}
   buttonLook: {fileID: 4008981063078997329}
