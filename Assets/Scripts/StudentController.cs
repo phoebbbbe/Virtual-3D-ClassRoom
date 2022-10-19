@@ -92,7 +92,10 @@ public class StudentController : MonoBehaviourPunCallbacks
 
     public void Ask()
     {
-        animator.SetBool(isAskingHash, true);
+        if (_pv.IsMine)
+        {
+            animator.SetBool(isAskingHash, true);
+        }
     }
 
     public void Tumb()
