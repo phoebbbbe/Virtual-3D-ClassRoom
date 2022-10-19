@@ -100,7 +100,6 @@ public class StudentController : MonoBehaviourPunCallbacks
         if (_pv.IsMine)
         {
             animator.SetBool(isTumbingHash, true);
-
         }
     }
 
@@ -109,7 +108,6 @@ public class StudentController : MonoBehaviourPunCallbacks
         if (_pv.IsMine)
         {
             animator.SetBool(isBangingHash, true);
-
         }
     }
 
@@ -118,7 +116,6 @@ public class StudentController : MonoBehaviourPunCallbacks
         if (_pv.IsMine)
         {
             animator.SetBool(isPumppingHash, true);
-
         }
     }
 
@@ -127,7 +124,6 @@ public class StudentController : MonoBehaviourPunCallbacks
         if (_pv.IsMine)
         {
             animator.SetBool(isTalkingHash, true);
-
         }
     }
 
@@ -136,7 +132,6 @@ public class StudentController : MonoBehaviourPunCallbacks
         if (_pv.IsMine)
         {
             animator.SetBool(isLookingHash, true);
-
         }
     }
 
@@ -145,7 +140,6 @@ public class StudentController : MonoBehaviourPunCallbacks
         if (_pv.IsMine)
         {
             animator.SetBool(isStandClappingHash, true);
-
         }
     }
 
@@ -154,7 +148,6 @@ public class StudentController : MonoBehaviourPunCallbacks
         if (_pv.IsMine)
         {
             animator.SetBool(isVictoringHash, true);
-
         }
     }
 
@@ -163,7 +156,6 @@ public class StudentController : MonoBehaviourPunCallbacks
         if (_pv.IsMine)
         {
             animator.SetBool(isWavingHash, true);
-
         }
     }
 
